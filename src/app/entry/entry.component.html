@@ -1,0 +1,16 @@
+<div
+  (click)="setSelected(true)"
+  *ngIf="!selected"
+  [ngClass]="state.value.color"
+>
+  {{state.value.text}}
+  <app-dropdown (changed)="state.patchValue({color: $event})"></app-dropdown>
+</div>
+
+<textarea
+  #textArea
+  *ngIf="selected"
+  [formControl]="state.get('text')"
+  (keypress)="checkEnter($event)"
+  (blur)="setSelected(false)"
+></textarea>
